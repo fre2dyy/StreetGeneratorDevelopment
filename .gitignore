@@ -1,0 +1,6 @@
+.idea
+*.pyc
+resources.py
+temp
+help/build
+tryouts/files

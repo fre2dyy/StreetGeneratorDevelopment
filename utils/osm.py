@@ -500,7 +500,7 @@ class OsmStreetParameters:
 		"""
 		:rtype: float
 		"""
-		return self._getLaneWidth() * self._getLaneCount() + self._getSidewalkCount() * self._getSidewalkWidth()
+		return self._getLaneWidth() * self._getLaneCount() #+ self._getSidewalkCount() * self._getSidewalkWidth()
 
 	def _getLaneWidth(self):
 		"""

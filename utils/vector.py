@@ -33,7 +33,6 @@ def clipping(inputMask, inputRaster, clippedPathTemp):
 def CopyExtentandEPSG(EEPSG, noEEPSG, targetPath):
 	"""
 	Copy extent and EPSG from input raster to output raster
-	:return:
 	"""
 
 	i = 0

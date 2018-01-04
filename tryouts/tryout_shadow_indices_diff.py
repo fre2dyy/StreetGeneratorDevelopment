@@ -115,7 +115,7 @@ def main():
 
 
 	final = numpytoimage(dop_np)
-	#final = change_contrast(final, 130)		# raise contrast
+	# final = change_contrast(final, 130)		# raise contrast
 	final.save("files/shadow/streets_shadow.tiff")
 
 

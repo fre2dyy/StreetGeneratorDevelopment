@@ -18,6 +18,7 @@ def main():
 	window.raise_()
 	bb = (635432, 5616219, 635939, 5616575)	# WestSouthEastNorth
 #	bb = (633612, 5619141, 634424, 5619713)	# highway
+
 	# # streets
 	streetsPath = ("files/cir/streets.shp")
 	osmStreets = OsmStreets(extent=bb, extentEPSG=25832)
@@ -27,7 +28,7 @@ def main():
 	vector2raster(bb, streetsPath, streetMaskPath)
 	loadRasterLayer(streetMaskPath, "streetsMask")
 
-	# clipping dop with shp
+	# clipping dop with streetMask
 	dop = ("files/colour/streets_dop.tif")
 	clippedPathTemp = ("files/colour/streets_clipped_temp.tiff")
 	clipping(streetMaskPath, dop, clippedPathTemp)

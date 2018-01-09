@@ -18,7 +18,7 @@ import numpy as np
 import cv2
 
 
-Ilmenau_streets = Image.open("C:\Users\student\PyCharm\Masterarbeit\output\FINAL\streets_centre_imp_ausschnitt\CORR (09-11-17).png")
+Ilmenau_streets = Image.open("files/shadow/streets_shadow_EPSG.tiff")
 # Einlesen der Bilder
 
 
@@ -60,7 +60,7 @@ def change_contrast(img, level):
 
 
 Ilmenau_streets = change_contrast(Ilmenau_streets, 150)    # Kontrast erhöhen
-Ilmenau_streets.save("C:\Users\student\PyCharm\Masterarbeit\output\FINAL\streets_centre_imp_ausschnitt\CORR (09-11-17)3.png")
+# Ilmenau_streets.save("files/shadow/streets_shadow.tiff")
 
 
 Ilmenau_streets.show()
@@ -129,9 +129,9 @@ Ilmenau_streets3 = numpytoimage(Ilmenau_streets2_rgb)
 
 Ilmenau_streets3.show()
 ##### Bildspeicherung #####
-path = 'C:\Users\student\PyCharm\Masterarbeit\output\Test'
-file = '\TEST' + '(' + time.strftime("%d-%m-%y") + ')'
-ending = '.png'
+path = 'files/shadow/'
+file = 'streets_shadow_hsv'    # + '(' + time.strftime("%d-%m-%y") + ')'
+ending = '.tiff'
 complete_path = path + file + ending
 
 print(complete_path)

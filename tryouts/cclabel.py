@@ -170,7 +170,7 @@ def main():
     sorted_x = sorted(labels.items(), key=operator.itemgetter(1))
 
 
-    str_labels = str(sorted_x)      # Dictionary in String umwandeln, unnötige Zeichen entfernen
+    str_labels = str(sorted_x)      # Convert Dictionary to String, remove unnecessary characters
     str_labels = str_labels.replace("{", "[")
     str_labels = str_labels.replace("}", "]")
     str_labels = str_labels.replace("(", "")
@@ -178,7 +178,7 @@ def main():
     str_labels = str_labels.replace(":", ",")
     # print str_labels[:100]
 
-    int_labels = eval(str_labels)   # Rücktransformieren in integer-Liste
+    int_labels = eval(str_labels)   # Transforming back into an integer list
 
     print len(int_labels), int_labels[:1000]
 
@@ -188,8 +188,8 @@ def main():
     value = []
     #int_labels2 = list(int_labels)
     while i < len(int_labels)/3:
-        key.append(int_labels[3*i])         # x-Werte (keys)
-        key.append(int_labels[3 * i + 1])   # y-Werte (keys)
+        key.append(int_labels[3*i])         # x (keys)
+        key.append(int_labels[3 * i + 1])   # y (keys)
         value.append(int_labels[3 * i + 2]) # values
         i = i + 1
 
@@ -197,7 +197,7 @@ def main():
     print "value: ", len(value), value[:100]
 
 
-    counter = collections.Counter(value)    # Zählen der Häufigkeit der "values"
+    counter = collections.Counter(value)    # Counting the frequency of "values"
     counter_values = counter.values()
 
     print "counter_values: ", len(counter_values), counter_values
@@ -205,11 +205,11 @@ def main():
 
 
 ################################################################################
-# Selektion
+# Selection
 ################################################################################
-# Aussortieren von "keys" und "values", die zu groß/klein sind
-# key2 = relevante "keys"
-# value2 = zu key2 zugehörige relevante values
+# Sorting out "keys" and "values" that are too big/small
+# key2 = relevant "keys"
+# value2 = to key2 appropriate relevant values
 
 
     i = 0

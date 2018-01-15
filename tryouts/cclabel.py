@@ -9,7 +9,8 @@
 # by Kesheng Wu, Ekow Otoo, and Kenji Suzuki
 #
 from PIL import Image
-from PIL import ImageDraw
+import PIL
+from PIL import ImageOps
 import collections
 
 import operator
@@ -19,6 +20,7 @@ import math, random
 from itertools import product
 from ufarray import *
 Image.MAX_IMAGE_PIXELS = 1000000000
+import cv2
 
 
 
@@ -120,8 +122,9 @@ def run(img):
     output_img = Image.new("RGB", (width, height))
     outdata = output_img.load()
 
+
     for (x, y) in labels:
- 
+
         # Name of the component the current point belongs to
         component = uf.find(labels[(x, y)])
 
@@ -142,7 +145,8 @@ def run(img):
 
 def main():
     # Open the image
-    img = Image.open("C:\Users\student\PyCharm\Masterarbeit\output\Test\TEST (13-11-17)_inv.png")
+    img = Image.open("files/motorway/gabor/motorway_gabor_S.tiff")
+    img = PIL.ImageOps.invert(img)
 
     # Threshold the image, this implementation is designed to process b+w
     # images only
@@ -158,7 +162,9 @@ def main():
     # output_image is just a frivolous way to visualize the components.
 
     (labels, output_img) = run(img)
-    #output_img.show()
+    # output_img.show()
+
+    output_img.save("files/motorway/gabor/motorway_gabor_S_cc1.tiff")
 
 ######################################################################################
     sorted_x = sorted(labels.items(), key=operator.itemgetter(1))
@@ -216,7 +222,7 @@ def main():
     help = []
 
     while i < len(counter_values):
-        if counter_values[i] >= 35 and counter_values[i] <= 70:
+        if counter_values[i] >= 80:# and counter_values[i] <= 71:
             value2.append(counter_values[v]*2)
             v = v + 1
 
@@ -253,6 +259,102 @@ def main():
     # print len(help), help
 
     # print sum(value2)
+
+#####################################################################
+
+    # Image to display the components in a nice, colorful way
+    width, height = img.size
+    output_img = Image.new("RGB", (width, height))
+    outdata = output_img.load()
+
+
+    # list (key2) to x- and y-tuple-pairs
+    i = 0
+    key2t = []
+    while i < len(key2):
+        key2t.append(tuple(key2[i:i + 2]))
+        i = i + 2
+
+    print "key2_tuple: ", key2t[:100]
+    # print len(key2t)
+
+    # transform value2-list
+    i = 0
+    j = 0
+    k = 0
+    value2_full = []
+    while i < len(value2):
+        while j < value2[i]:
+            value2_full.append(k)
+            j = j + 1
+        j = 0
+        i = i + 1
+        k = k + 1
+
+
+    d = dict(zip(key2t, value2_full))
+    print len(d)
+
+    # ############################################################
+    # ############################################################
+    # # from PIL import Image
+    # from random import seed, randint
+    #
+    # width, height = img.size
+    #
+    # # width, height = 200, 200
+    # background = 0
+    #
+    # algorithm = 0
+    # i = 0
+    # print('Algorithm', algorithm)
+    #
+    # if algorithm == 0:
+    #     im = Image.new('L', (width, height))
+    #     for i in d:
+    #         im.putpixel(i, d[i])
+    # elif algorithm == 1:
+    #     buff = bytearray((background for _ in xrange(width * height)))
+    #     for (x, y), v in d.items():
+    #         buff[y * width + x] = v
+    #     im = Image.frombytes('L', (width, height), str(buff))
+    # elif algorithm == 2:
+    #     data = [background] * width * height
+    #     for i in d:
+    #         x, y = i
+    #         data[x + y * width] = d[i]
+    #     im = Image.new('L', (width, height))
+    #     im.putdata(data)
+    #
+    # # im.show()
+    #
+    # fname = 'qrand%d.png' % algorithm
+    # im.save(fname)
+    # print(fname, 'saved')
+    # ############################################################
+    # ############################################################
+
+
+
+
+    colors = {}
+    i = 0
+    for (x, y) in d:
+    #
+    #     # Name of the component the current point belongs to
+    #     component = uf.find(labels[(x, y)])
+    #
+    #     # Update the labels with correct information
+    #     labels[(x, y)] = component
+    #
+    #     # Associate a random color with this component
+        if value2_full[i] not in colors:
+            colors[value2_full[i]] = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    #
+        # Colorize the image
+        outdata[x, y] = colors[value2_full[i]]
+
+    output_img.save("files/motorway/gabor/motorway_gabor_S_cc2.tiff")
 
 
 

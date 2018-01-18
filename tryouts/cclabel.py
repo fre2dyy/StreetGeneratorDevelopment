@@ -38,4 +38,4 @@ labeled_img = cv2.cvtColor(labeled_img, cv2.COLOR_HSV2BGR)
 labeled_img[label_hue==0] = 0
 
 cv2.imwrite('files/motorway/gabor/motorway_gabor_S_ccl.tiff', labeled_img)
-# np.savetxt("files/motorway/gabor/foo.txt", labels, fmt='%1.1d')
+# np.savetxt("files/motorway/gabor/motorway_gabor_S_ccl.txt", labels, fmt='%1.1d')
